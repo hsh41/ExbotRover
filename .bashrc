@@ -24,7 +24,7 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-export PS1='\[\e[1;35m\][\[\e[1;33m\]\u@\h \[\e[1;31m\]\w\[\e[1;35m\]]\[\e[1;36m\]\$ \[\e[0m\]'
+PS1="\[\e[37;40m\][\[\e[32;40m\]\u\[\e[37;40m\]@\h \[\e[36;40m\]\w\[\e[0m\]]\\$ "
 conda activate prediction
 export PATH="/home/users/shenhua.hu/usr/bin:$PATH"
 alias vim="~/vim8/bin/vim"
