@@ -8,6 +8,9 @@ set hlsearch
 set encoding=utf-8
 set fileencodings=utf-8,ucs-bom,GB2312,big5
 set cursorline
+set cursorcolumn
+hi CursorLine   cterm=NONE ctermbg=black ctermfg=NONE guibg=darkred guifg=white
+hi CursorColumn cterm=NONE ctermbg=black ctermfg=NONE guibg=darkred guifg=white
 set autoindent
 set smartindent
 set scrolloff=4
@@ -108,7 +111,7 @@ let g:ycm_confirm_extra_conf=0
 set completeopt=longest,menu
 "python解释器路径"
 "let g:ycm_server_python_interpreter='/home/hushenhua/miniconda2/envs/face/bin/python'
-let g:ycm_path_to_python_interpreter='/home/users/shenhua.hu/miniconda3/envs/prediction/bin/python'
+let g:ycm_path_to_python_interpreter='/home/hsh/miniconda3/envs/face/bin/python'
 "是否开启语义补全"
 let g:ycm_seed_identifiers_with_syntax=1
 "是否在注释中也开启补全"
@@ -139,7 +142,7 @@ let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
 let g:airline#extensions#ale#enabled = 1
-"let g:ale_python_flake8_options='--ignore=E501'
+let g:ale_python_flake8_options='--ignore=E501'
 "
 "Plugin 'davidhalter/jedi-vim'
 "let g:jedi#popup_on_dot=0
