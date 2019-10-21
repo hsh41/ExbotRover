@@ -137,6 +137,7 @@ inoremap <expr> <PageUp>   pumvisible() ? '\<PageUp>\<C-p>\<C-n>' : '\<PageUp>'
 "显示函数原型
 let g:ycm_add_preview_to_completeopt = 1
 "
+" Install autopep8
 Plugin 'w0rp/ale'
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 1
