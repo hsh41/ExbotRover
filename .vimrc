@@ -1,6 +1,7 @@
 set nocompatible              " required
 filetype off                  " required
 set backspace=indent,eol,start
+"set background=dark
 syntax on
 filetype plugin indent on
 set ic
@@ -9,11 +10,13 @@ set encoding=utf-8
 set fileencodings=utf-8,ucs-bom,GB2312,big5
 set cursorline
 set cursorcolumn
-hi CursorLine   cterm=NONE ctermbg=black ctermfg=NONE guibg=darkred guifg=white
-hi CursorColumn cterm=NONE ctermbg=black ctermfg=NONE guibg=darkred guifg=white
+hi CursorLine   cterm=NONE ctermbg=black ctermfg=NONE guibg=darkred guifg=yellow
+hi CursorColumn cterm=NONE ctermbg=black ctermfg=NONE guibg=darkred guifg=yellow
 set autoindent
 set smartindent
 set scrolloff=4
+set tabstop=4
+set expandtab
 set showmatch
 set nu
 let python_highlight_all=1
@@ -23,13 +26,11 @@ autocmd BufReadPost *
 			\ if line("'\"")>0&&line("'\"")<=line("$") |
 			\	exe "normal g'\"" |
 			\ endif
-"让vim记忆上次编辑的位置
-au Filetype python set tabstop=4
-au Filetype python set softtabstop=4
-au Filetype python set shiftwidth=4
+
+set softtabstop=4
+set shiftwidth=4
 au Filetype python set textwidth=120
-au Filetype python set expandtab
-au Filetype python set autoindent
+set autoindent
 au Filetype python set fileformat=unix
 autocmd Filetype python set foldmethod=indent
 autocmd Filetype python set foldlevel=99
@@ -110,8 +111,7 @@ let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf=0
 set completeopt=longest,menu
 "python解释器路径"
-"let g:ycm_server_python_interpreter='/home/hushenhua/miniconda2/envs/face/bin/python'
-let g:ycm_path_to_python_interpreter='/home/hsh/miniconda3/envs/face/bin/python'
+"let g:ycm_path_to_python_interpreter='/home/users/shenhua.hu/miniconda3/envs/prediction/bin/python'
 "是否开启语义补全"
 let g:ycm_seed_identifiers_with_syntax=1
 "是否在注释中也开启补全"
@@ -137,14 +137,15 @@ inoremap <expr> <PageUp>   pumvisible() ? '\<PageUp>\<C-p>\<C-n>' : '\<PageUp>'
 "显示函数原型
 let g:ycm_add_preview_to_completeopt = 1
 "
-" Install autopep8
 Plugin 'w0rp/ale'
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
 let g:airline#extensions#ale#enabled = 1
-let g:ale_python_flake8_options='--ignore=E501'
 "
+"Plugin 'flazz/vim-colorschemes'
+"set t_Co=256
+"colorscheme solarized
 "Plugin 'davidhalter/jedi-vim'
 "let g:jedi#popup_on_dot=0
 "
