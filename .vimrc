@@ -129,7 +129,7 @@ let g:ycm_complete_in_strings = 1
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 "回车即选中当前项"
 "inoremap <expr> <CR>       pumvisible() ? '<C-y>' : '\<CR>'
-"上下左右键行为"
+" 上下左右键行为"
 inoremap <expr> <Down>     pumvisible() ? '\<C-n>' : '\<Down>'
 inoremap <expr> <Up>       pumvisible() ? '\<C-p>' : '\<Up>'
 inoremap <expr> <PageDown> pumvisible() ? '\<PageDown>\<C-p>\<C-n>' : '\<PageDown>'
@@ -143,6 +143,8 @@ let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
 let g:airline#extensions#ale#enabled = 1
 "
+Plugin 'tpope/vim-commentary'
+noremap <C-l> :Commentary<cr>
 "Plugin 'flazz/vim-colorschemes'
 "set t_Co=256
 "colorscheme solarized
