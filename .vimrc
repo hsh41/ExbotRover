@@ -1,38 +1,38 @@
 set nocompatible              " required
-filetype off                  " required
+" 开启文件类型侦测
+filetype on                  " required
+" 根据侦测到的不同类型加载对应的插件
+filetype plugin on
+" 让配置变更立即生效
+autocmd BufWritePost $MYVIMRC source $MYVIMRC
+" vim 自身命令行模式智能补全
+set wildmenu
+" 搜索时大小写不敏感
+set ignorecase
+set encoding=utf-8 " The encoding displayed.
+set fileencodings=utf-8,ucs-bom,GB2312,big5 " The encoding written to file.
+" 保持在光标上下最少行数
+set scrolloff=4
+" 退格键可以删除东西
 set backspace=indent,eol,start
-"set background=dark
-syntax on
-filetype plugin indent on
-set ic
-set hlsearch
-set encoding=utf-8
-set fileencodings=utf-8,ucs-bom,GB2312,big5
+
 set cursorline
 set cursorcolumn
 hi CursorLine   cterm=NONE ctermbg=black ctermfg=NONE guibg=darkred guifg=yellow
 hi CursorColumn cterm=NONE ctermbg=black ctermfg=NONE guibg=darkred guifg=yellow
-set autoindent
 set smartindent
-set scrolloff=4
-set tabstop=4
-set expandtab
-set showmatch
-set nu
+set showmatch " Show matching brackets.
 let python_highlight_all=1
+" //搜索选中文本
 vnoremap // y/<c-r>"<cr>
-"让vim记忆上次编辑的位置
+" 让vim记忆上次编辑的位置
 autocmd BufReadPost *
 			\ if line("'\"")>0&&line("'\"")<=line("$") |
 			\	exe "normal g'\"" |
-			\ endif
+            \ endif
 
-set softtabstop=4
-set shiftwidth=4
 au Filetype python set textwidth=120
-set autoindent
 au Filetype python set fileformat=unix
-autocmd Filetype python set foldmethod=indent
 autocmd Filetype python set foldlevel=99
 map <F5> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
@@ -102,7 +102,8 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 "
-Plugin 'https://github.com/bling/vim-airline'
+Plugin 'Lokaltog/vim-powerline'
+" Plugin 'https://github.com/bling/vim-airline'
 "
 Plugin 'Valloric/YouCompleteMe'
 "默认配置文件路径"
@@ -146,9 +147,12 @@ let g:ale_python_flake8_options='--ignore=E501'
 "
 Plugin 'tpope/vim-commentary'
 noremap <C-l> :Commentary<cr>
-"Plugin 'flazz/vim-colorschemes'
-"set t_Co=256
-"colorscheme solarized
+
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tomasr/molokai'
+Plugin 'vim-scripts/phd'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 "Plugin 'davidhalter/jedi-vim'
 "let g:jedi#popup_on_dot=0
 "
@@ -157,10 +161,56 @@ noremap <C-l> :Commentary<cr>
 "Plugin 'ervandew/supertab'
 "let g:SuperTabDefaultCompletionType = "context"
 "
-" " Add all your plugins here (note older versions of Vundle used Bundle
-" instead of Plugin)
-"
-"
-" " All of your Plugins must be added before the following line
 call vundle#end()            " required
-filetype plugin indent on    " required
+
+
+
+" 配色方案
+" set background=dark
+" colorscheme solarized
+" colorscheme molokai
+" colorscheme phd
+" 总是显示状态栏
+set laststatus=2
+" 显示光标当前位置
+set ruler
+" 开启行号显示
+set number
+" 高亮显示当前行/列
+set cursorline
+set cursorcolumn
+" 高亮显示搜索结果
+set hlsearch
+" 设置状态栏主题风格
+let g:Powerline_colorscheme='solarized256'
+" 开启语法高亮功能
+syntax enable
+" 允许用指定语法高亮配色方案替换默认方案
+syntax on
+" 自适应不同语言的智能缩进
+filetype indent on
+" 将制表符扩展为空格
+set expandtab
+" 设置编辑时制表符占用空格数
+set tabstop=4
+" 设置格式化时制表符占用空格数
+set shiftwidth=4
+" 让 vim 把连续数量的空格视为一个制表符
+set softtabstop=4
+" 基于缩进或语法进行代码折叠
+set foldmethod=indent
+set foldmethod=syntax
+" 启动 vim 时关闭折叠代码
+set nofoldenable
+" 使用 NERDTree 插件查看工程文件。设置快捷键，速记：file list
+noremap <Leader>fl :NERDTreeToggle<CR>
+" 设置NERDTree子窗口宽度
+let NERDTreeWinSize=32
+" 设置NERDTree子窗口位置
+let NERDTreeWinPos="right"
+" 显示隐藏文件
+let NERDTreeShowHidden=1
+" NERDTree 子窗口中不显示冗余帮助信息
+let NERDTreeMinimalUI=1
+" 删除文件时自动删除文件对应 buffer
+let NERDTreeAutoDeleteBuffer=1
