@@ -128,15 +128,16 @@ let g:ycm_cache_omnifunc=0
 let g:ycm_complete_in_strings = 1
 "离开插入模式后自动关闭预览窗口"
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-"回车即选中当前项"
-"inoremap <expr> <CR>       pumvisible() ? '<C-y>' : '\<CR>'
-" 上下左右键行为"
-inoremap <expr> <Down>     pumvisible() ? '\<C-n>' : '\<Down>'
-inoremap <expr> <Up>       pumvisible() ? '\<C-p>' : '\<Up>'
-inoremap <expr> <PageDown> pumvisible() ? '\<PageDown>\<C-p>\<C-n>' : '\<PageDown>'
-inoremap <expr> <PageUp>   pumvisible() ? '\<PageUp>\<C-p>\<C-n>' : '\<PageUp>'
 "显示函数原型
 let g:ycm_add_preview_to_completeopt = 1
+" YCM自动语义补全
+let g:ycm_semantic_triggers =  {
+            \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+            \ 'cs,lua,javascript': ['re!\w{2}'],
+            \ }
+" 补全窗口配色
+highlight PMenu ctermfg=black ctermbg=3 guifg=black guibg=darkgrey
+highlight PMenuSel ctermfg=black ctermbg=white guifg=darkgrey guibg=white
 "
 Plugin 'w0rp/ale'
 let g:ale_fix_on_save = 1
