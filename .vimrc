@@ -15,6 +15,14 @@ set fileencodings=utf-8,ucs-bom,GB2312,big5 " The encoding written to file.
 set scrolloff=4
 " 退格键可以删除东西
 set backspace=indent,eol,start
+" 禁止显示滚动条
+" set guioptions-=l
+" set guioptions-=L
+" set guioptions-=r
+" set guioptions-=R
+" 禁止显示菜单和工具条
+" set guioptions-=m
+" set guioptions-=T
 
 set cursorline
 set cursorcolumn
@@ -71,11 +79,13 @@ call vundle#begin()
 " " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 "
+" require yapf
 Plugin 'Chiel92/vim-autoformat'
 nnoremap <F3> :Autoformat<CR>
 let g:autoformat_autoindent = 1
 let g:autoformat_retab = 1
 let g:autoformat_remove_trailing_spaces = 1
+let g:formatter_yapf_style = 'pep8'
 "
 Plugin 'kien/rainbow_parentheses.vim'
 let g:rbpt_colorpairs = [
