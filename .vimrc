@@ -23,6 +23,8 @@ set backspace=indent,eol,start
 " 禁止显示菜单和工具条
 " set guioptions-=m
 " set guioptions-=T
+" 提示窗口出现在下方
+set splitbelow
 
 set cursorline
 set cursorcolumn
@@ -85,7 +87,7 @@ nnoremap <F3> :Autoformat<CR>
 let g:autoformat_autoindent = 1
 let g:autoformat_retab = 1
 let g:autoformat_remove_trailing_spaces = 1
-let g:formatter_yapf_style = 'pep8'
+let g:formatter_yapf_style = 'google'
 "
 Plugin 'kien/rainbow_parentheses.vim'
 let g:rbpt_colorpairs = [
@@ -122,7 +124,7 @@ let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf=0
 set completeopt=longest,menu
 "python解释器路径"
-"let g:ycm_path_to_python_interpreter='/home/users/shenhua.hu/miniconda3/envs/prediction/bin/python'
+let g:ycm_path_to_python_interpreter='/home/hsh/miniconda3/envs/face/bin/python'
 "是否开启语义补全"
 let g:ycm_seed_identifiers_with_syntax=1
 "是否在注释中也开启补全"
@@ -141,13 +143,14 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 "显示函数原型
 let g:ycm_add_preview_to_completeopt = 1
 " YCM自动语义补全
-let g:ycm_semantic_triggers =  {
-            \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
-            \ 'cs,lua,javascript': ['re!\w{2}'],
-            \ }
+" let g:ycm_semantic_triggers =  {
+"             \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+"             \ 'cs,lua,javascript': ['re!\w{2}'],
+"             \ }
 " 补全窗口配色
 highlight PMenu ctermfg=black ctermbg=3 guifg=black guibg=darkgrey
 highlight PMenuSel ctermfg=black ctermbg=white guifg=darkgrey guibg=white
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "
 Plugin 'w0rp/ale'
 let g:ale_fix_on_save = 1
@@ -164,6 +167,19 @@ Plugin 'tomasr/molokai'
 Plugin 'vim-scripts/phd'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'vim-scripts/star-search'
+
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+" " Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<leader><tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" " If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
 "Plugin 'davidhalter/jedi-vim'
 "let g:jedi#popup_on_dot=0
 "
@@ -225,3 +241,5 @@ let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
 " 删除文件时自动删除文件对应 buffer
 let NERDTreeAutoDeleteBuffer=1
+" 过滤: 所有指定文件和文件夹不显示
+let NERDTreeIgnore = ['\.pyc$', '\.swp', '\.swo', '\.vscode', '__pycache__']  
