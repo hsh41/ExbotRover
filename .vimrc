@@ -15,6 +15,7 @@ set fileencodings=utf-8,ucs-bom,GB2312,big5 " The encoding written to file.
 set scrolloff=4
 " 退格键可以删除东西
 set backspace=indent,eol,start
+let g:pymode_python='python3'
 " 禁止显示滚动条
 " set guioptions-=l
 " set guioptions-=L
@@ -28,7 +29,7 @@ set splitbelow
 
 set cursorline
 set cursorcolumn
-hi CursorLine   cterm=NONE ctermbg=black ctermfg=NONE guibg=darkred guifg=yellow
+hi CursorLine   cterm=NONE ctermbg=NONE ctermfg=NONE guibg=darkred guifg=yellow
 hi CursorColumn cterm=NONE ctermbg=black ctermfg=NONE guibg=darkred guifg=yellow
 set smartindent
 set showmatch " Show matching brackets.
@@ -41,7 +42,7 @@ autocmd BufReadPost *
 			\	exe "normal g'\"" |
             \ endif
 
-au Filetype python set textwidth=120
+au Filetype python set textwidth=98
 au Filetype python set fileformat=unix
 autocmd Filetype python set foldlevel=99
 map <F5> :call CompileRunGcc()<CR>
@@ -60,7 +61,7 @@ func! CompileRunGcc()
 		:!time bash %
 	elseif &filetype == 'python'
 		exec "!clear"
-		exec "!time python3 %"
+		exec "!time python %"
 	elseif &filetype == 'html'
 		exec "!firefox % &"
 	elseif &filetype == 'go'
@@ -123,8 +124,9 @@ let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 "打开vim时不再询问是否加载ycm_extra_conf.py配置"
 let g:ycm_confirm_extra_conf=0
 set completeopt=longest,menu
-"python解释器路径"
-let g:ycm_path_to_python_interpreter='/home/hsh/miniconda3/envs/face/bin/python'
+" python解释器路径"
+" let g:ycm_path_to_python_interpreter='/home/hushenhua/miniconda3/envs/tf2/bin/python'
+let g:ycm_path_to_python_interpreter='/home/hushenhua/miniconda3/envs/face/bin/python'
 "是否开启语义补全"
 let g:ycm_seed_identifiers_with_syntax=1
 "是否在注释中也开启补全"
@@ -152,12 +154,15 @@ highlight PMenu ctermfg=black ctermbg=3 guifg=black guibg=darkgrey
 highlight PMenuSel ctermfg=black ctermbg=white guifg=darkgrey guibg=white
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "
+" require flake8
 Plugin 'w0rp/ale'
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
 let g:airline#extensions#ale#enabled = 1
 let g:ale_python_flake8_options='--ignore=E501'
+" remove left white column
+set signcolumn=no
 "
 Plugin 'tpope/vim-commentary'
 noremap <C-l> :Commentary<cr>
@@ -179,6 +184,7 @@ let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsUsePythonVersion=3
 
 "Plugin 'davidhalter/jedi-vim'
 "let g:jedi#popup_on_dot=0
@@ -243,3 +249,22 @@ let NERDTreeMinimalUI=1
 let NERDTreeAutoDeleteBuffer=1
 " 过滤: 所有指定文件和文件夹不显示
 let NERDTreeIgnore = ['\.pyc$', '\.swp', '\.swo', '\.vscode', '__pycache__']  
+
+"###################    set file head start  #########################
+"autocmd创建新文件自动调用setfilehead()函数
+autocmd BufNewFile *.py exec ":call Setfilehead()"
+func Setfilehead()
+    call append(0, '#!/usr/bin/env python')
+    call append(1, '# -*- coding:utf-8 -*-')
+    call append(2, '# Filename      : '.expand("%"))
+    call append(3, '# Author        : Shenhua.Hu - hushenhua2017@ia.ac.cn')
+    call append(4, '# Laboratory    : High-Speed-Vision Lab')
+    call append(5, '# School        : Institute of Automation, Chinese Academy of Sciences')
+    call append(6, '# Create        : '.strftime("%Y-%m-%d %H:%M:%S"))
+    call append(7, '')
+endfunc
+
+"map F2 to creat file head comment
+"映射F2快捷键，生成后跳转至第10行，然后使用o进入vim的插入模式
+map <F2> :call Setfilehead()<CR>
+"###################    set file head end   ##########################
