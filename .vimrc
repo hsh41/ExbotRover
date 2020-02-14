@@ -11,6 +11,7 @@ set wildmenu
 set ignorecase
 set encoding=utf-8 " The encoding displayed.
 set fileencodings=utf-8,ucs-bom,GB2312,big5 " The encoding written to file.
+set ambiwidth=double "防止特殊符号无法正常显示
 " 保持在光标上下最少行数
 set scrolloff=4
 " 退格键可以删除东西
@@ -27,10 +28,6 @@ let g:pymode_python='python3'
 " 提示窗口出现在下方
 set splitbelow
 
-set cursorline
-set cursorcolumn
-hi CursorLine   cterm=NONE ctermbg=NONE ctermfg=NONE guibg=darkred guifg=yellow
-hi CursorColumn cterm=NONE ctermbg=black ctermfg=NONE guibg=darkred guifg=yellow
 set smartindent
 set showmatch " Show matching brackets.
 let python_highlight_all=1
@@ -115,8 +112,11 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 "
-Plugin 'Lokaltog/vim-powerline'
-" Plugin 'https://github.com/bling/vim-airline'
+" Plugin 'Lokaltog/vim-powerline'
+Plugin 'https://github.com/bling/vim-airline'
+let g:airline_powerline_fonts=1
+" set laststatus=2 "1为关闭底部状态栏 2为开启"
+set t_Co=256     "终端开启256色支持"
 "
 Plugin 'Valloric/YouCompleteMe'
 "默认配置文件路径"
@@ -150,8 +150,8 @@ let g:ycm_add_preview_to_completeopt = 1
 "             \ 'cs,lua,javascript': ['re!\w{2}'],
 "             \ }
 " 补全窗口配色
-highlight PMenu ctermfg=black ctermbg=3 guifg=black guibg=darkgrey
-highlight PMenuSel ctermfg=black ctermbg=white guifg=darkgrey guibg=white
+highlight PMenu cterm=NONE ctermfg=black ctermbg=3
+highlight PMenuSel cterm=NONE ctermfg=black ctermbg=white
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "
 " require flake8
@@ -212,10 +212,12 @@ set number
 " 高亮显示当前行/列
 set cursorline
 set cursorcolumn
+highlight CursorLine   cterm=NONE ctermbg=NONE ctermfg=NONE
+highlight CursorColumn cterm=NONE ctermbg=black ctermfg=NONE
 " 高亮显示搜索结果
 set hlsearch
-" 设置状态栏主题风格
-let g:Powerline_colorscheme='solarized256'
+highlight Search cterm=NONE ctermbg=3
+highlight Search cterm=NONE ctermfg=black
 " 开启语法高亮功能
 syntax enable
 " 允许用指定语法高亮配色方案替换默认方案
