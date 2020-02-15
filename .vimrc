@@ -115,7 +115,7 @@ au Syntax * RainbowParenthesesLoadBraces
 " Plugin 'Lokaltog/vim-powerline'
 Plugin 'https://github.com/bling/vim-airline'
 let g:airline_powerline_fonts=1
-" set laststatus=2 "1为关闭底部状态栏 2为开启"
+set laststatus=2 "1为关闭底部状态栏 2为开启"
 set t_Co=256     "终端开启256色支持"
 "
 Plugin 'Valloric/YouCompleteMe'
@@ -161,6 +161,7 @@ let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
 let g:airline#extensions#ale#enabled = 1
 let g:ale_python_flake8_options='--ignore=E501'
+highlight SpellBad ctermfg=white ctermbg=red
 " remove left white column
 set signcolumn=no
 "
@@ -173,6 +174,7 @@ Plugin 'vim-scripts/phd'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-scripts/star-search'
+Plugin 'tpope/vim-fugitive'
 
 " Track the engine.
 Plugin 'SirVer/ultisnips'
@@ -203,8 +205,6 @@ call vundle#end()            " required
 " colorscheme solarized
 " colorscheme molokai
 " colorscheme phd
-" 总是显示状态栏
-set laststatus=2
 " 显示光标当前位置
 set ruler
 " 开启行号显示
