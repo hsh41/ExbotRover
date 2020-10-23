@@ -38,7 +38,9 @@ autocmd BufReadPost *
 			\ if line("'\"")>0&&line("'\"")<=line("$") |
 			\	exe "normal g'\"" |
             \ endif
-
+augroup filetypedetect 
+    au BufNewFile,BufRead *.pig set filetype=pig syntax=pig 
+augroup END
 au Filetype python set textwidth=98
 au Filetype python set fileformat=unix
 autocmd Filetype python set foldlevel=99
@@ -126,7 +128,7 @@ let g:ycm_confirm_extra_conf=0
 set completeopt=longest,menu
 " python解释器路径"
 " let g:ycm_path_to_python_interpreter='/home/hushenhua/miniconda3/envs/tf2/bin/python'
-let g:ycm_path_to_python_interpreter='/home/hushenhua/miniconda3/envs/face/bin/python'
+let g:ycm_path_to_python_interpreter='/home/hsh/miniconda3/bin/python'
 "是否开启语义补全"
 let g:ycm_seed_identifiers_with_syntax=1
 "是否在注释中也开启补全"
@@ -150,6 +152,7 @@ let g:ycm_add_preview_to_completeopt = 1
 "             \ 'cs,lua,javascript': ['re!\w{2}'],
 "             \ }
 " 补全窗口配色
+nnoremap <leader>d :YcmCompleter GoToDefinitionElseDeclaration<CR>
 highlight PMenu cterm=NONE ctermfg=black ctermbg=3
 highlight PMenuSel cterm=NONE ctermfg=black ctermbg=white
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
@@ -175,6 +178,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-scripts/star-search'
 Plugin 'tpope/vim-fugitive'
+Plugin 'Yggdroot/LeaderF'
 
 " Track the engine.
 Plugin 'SirVer/ultisnips'

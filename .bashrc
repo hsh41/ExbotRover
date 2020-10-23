@@ -10,23 +10,27 @@ fi
 
 # User specific aliases and functions
 
+PS1="\[\e[37;40m\][\[\e[32;40m\]\u\[\e[37;40m\]@\h \[\e[36;40m\]\W\[\e[0m\]]\\$ "
+set -o vi
+export PATH="/home/hsh/mybin:$PATH"
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/users/shenhua.hu/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/hsh/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/users/shenhua.hu/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/users/shenhua.hu/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/hsh/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/hsh/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/users/shenhua.hu/miniconda3/bin:$PATH"
+        export PATH="/home/hsh/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-PS1="\[\e[37;40m\][\[\e[32;40m\]\u\[\e[37;40m\]@\h \[\e[36;40m\]\W\[\e[0m\]]\\$ "
-conda activate prediction
-export PATH="/home/users/shenhua.hu/usr/bin:$PATH"
-alias vim="~/vim8/bin/vim"
-alias ga='git add *py'
-alias gc='git commit -m '
+
+alias ll="ls -al"
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
+export CDPATH=.:~/rec/experiments_config/src/main/resources/experiments/diviner/si
